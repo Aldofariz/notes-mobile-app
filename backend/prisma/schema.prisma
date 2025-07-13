@@ -18,9 +18,8 @@ model Users{
 
 model Notes{
   id String @id @default(uuid())
-  fullname String 
-  username String
-  password String 
+  name String
+  description String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   Users Users? @relation(fields: [usersId], references: [id])

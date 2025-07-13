@@ -21,4 +21,4 @@ export const authHandler = (req,res,next) => {
     } catch (error) {
     next(error);
     }
-}
+};

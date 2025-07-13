@@ -1,5 +1,7 @@
 import { prisma } from "../application/database.js"
 import { HttpException } from "../middleware/error.js"
+
+
 export const getProfile = async (userId) => {
 const user = await prisma.users.findUnique({
     where: {

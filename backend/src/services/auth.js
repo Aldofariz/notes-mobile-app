@@ -65,4 +65,4 @@ export const login = async(request) => {
     message: "Login successfull",
     access_token: token,
     };
-}
+};
