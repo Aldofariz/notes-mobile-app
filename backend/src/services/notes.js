@@ -62,3 +62,46 @@ export const getNote = async (usersId, noteId) => {
     return note;
 };
 
+export const updateNote = async (userId, noteId, request) => {
+    const note = await prisma.notes.update({
+        where: {
+            id: noteId,
+            usersId: userId,
+        },
+        data: {
+            name: request.name,
+            description: request.description,
+        },
+    });
+
+        if (!note) {
+        throw new HttpException(404, "Note not found");
+    }
+
+    return note;
+};
+
+export const deleteNote = async (userId, noteId) => {
+    const findNote = await prisma.notes.findFirst({
+        where: {
+        id: noteId,
+        usersId: userId,
+        },
+    });
+
+    if (!findNote) {
+        throw new HttpException(404, "Note not found");
+    }
+
+    await prisma.notes.delete({
+        where: {
+        id: noteId,
+        usersId: userId,
+        },
+    });
+
+    return {
+        message: "Note deleted successfully",
+    };
+};
+

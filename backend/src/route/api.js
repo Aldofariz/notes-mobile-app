@@ -16,3 +16,5 @@ router.get("/profile", profileController);
 router.post("/notes", notesController.create);
 router.get("/notes", notesController.get);
 router.get("/notes/:id", notesController.getOne);
+router.patch("/notes/:id", notesController.update);
+router.delete("/notes/:id", notesController.delete);

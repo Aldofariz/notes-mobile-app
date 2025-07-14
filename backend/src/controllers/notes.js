@@ -1,4 +1,4 @@
-import { createNote, getNotes, getNote } from "../services/notes.js";
+import { createNote, getNotes, getNote, updateNote, deleteNote } from "../services/notes.js";
 
 export const notesController = {
     create: async (req, res, next) => {
@@ -22,12 +22,27 @@ export const notesController = {
         }
     },
     getOne: async (req, res, next) => {
-    try {
-        const result = await getNote(req.user.id, req.params.id);
-        return res.status(200).json(result);
-    } catch (error) {
-        next(error);
-    }
-},
-
+        try {
+            const result = await getNote(req.user.id, req.params.id);
+            return res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    },
+    update: async (req, res, next) => {
+        try {
+            const result = await updateNote(req.user.id, req.params.id, req.body);
+            return res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    },
+    delete: async (req, res, next) => {
+        try {
+            const result = await deleteNote(req.user.id, req.params.id);
+            return res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
