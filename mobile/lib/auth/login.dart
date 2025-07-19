@@ -54,40 +54,119 @@ class _LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(builder: (context) => const GetNotesScreen()),
         );
 
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Success'),
-              content: const Text('Login berhasil'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
+          showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: Color(0xFF1E1E1E), // warna gelap
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle_outline,
+                color: Colors.greenAccent,
+                size: 60,
+              ),
+              SizedBox(height: 15),
+              Text(
+                'Success',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            );
-          },
-        );
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Login berhasil',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.greenAccent,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+
       }
     } catch (e) {
       print(e);
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content: const Text('Terjadi kesalahan saat melakukan login'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            backgroundColor: Color(0xFF1E1E1E), // warna gelap
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    color: Colors.redAccent,
+                    size: 60,
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Error',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Login gagal. Periksa koneksi internet atau kredensial Anda.',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.greenAccent,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text('OK'),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       );
@@ -106,7 +185,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Masuk Akun')),
+      appBar: AppBar(
+        title: const Text('Notes App', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color.fromARGB(221, 18, 74, 148)),
+      backgroundColor: const Color.fromARGB(255, 8, 21, 32),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
               'Masuk Notes App',
               style: TextStyle(
                 fontSize: 30,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -123,9 +205,11 @@ class _LoginScreenState extends State<LoginScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: username,
                 decoration: const InputDecoration(
                   labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.white12),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -134,9 +218,11 @@ class _LoginScreenState extends State<LoginScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: password,
                 decoration: const InputDecoration(
                   labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.white12),
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
@@ -147,15 +233,16 @@ class _LoginScreenState extends State<LoginScreen> {
               widthFactor: 0.7,
               child: OutlinedButton(
                 onPressed: isButtonDisabled || isLoading ? null : login,
-                style: OutlinedButton.styleFrom(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   side: BorderSide(
                     color:
                         isButtonDisabled || isLoading
-                            ? Colors.black12
-                            : Colors.black,
+                            ? Colors.white12
+                            : Colors.white,
                   ),
                 ),
                 child:
@@ -169,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                         )
@@ -183,8 +270,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                               color:
                                   isButtonDisabled
-                                      ? Colors.black12
-                                      : Colors.black,
+                                      ? Colors.white12
+                                      : Colors.white,
                             ),
                           ),
                         ),
@@ -199,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: const Text(
                     'Belum punya akun ?',
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
                 Padding(
@@ -215,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: const Text(
                       'Daftar',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 15),
                     ),
                   ),
                 ),

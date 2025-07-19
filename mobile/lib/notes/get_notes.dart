@@ -87,8 +87,10 @@ class _GetNotesScreenState extends State<GetNotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Explore', style: TextStyle(color: Colors.black)),
+        backgroundColor: const Color.fromARGB(221, 18, 74, 148),
+        title: const Text('Explore', style: TextStyle(color: Colors.white)),
       ),
+      backgroundColor: const Color.fromARGB(255, 8, 21, 32),
       body: Column(
         children: [
           Center(
@@ -105,7 +107,7 @@ class _GetNotesScreenState extends State<GetNotesScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.blueAccent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -127,7 +129,7 @@ class _GetNotesScreenState extends State<GetNotesScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),

@@ -105,8 +105,10 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Note', style: TextStyle(color: Colors.black)),
+        title: const Text('Edit Note', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color.fromARGB(221, 18, 74, 148),
       ),
+      backgroundColor: const Color.fromARGB(255, 8, 21, 32),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -115,6 +117,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
               FractionallySizedBox(
                 widthFactor: 0.7,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: name,
                   onChanged: (_) => _validateInputs(),
                   decoration: const InputDecoration(
@@ -127,6 +130,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
               FractionallySizedBox(
                 widthFactor: 0.7,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: description,
                   onChanged: (_) => _validateInputs(),
                   decoration: const InputDecoration(
@@ -150,7 +154,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                           )
                           : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

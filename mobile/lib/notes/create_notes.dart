@@ -71,8 +71,10 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 8, 21, 32),
       appBar: AppBar(
-        title: const Text('Buat Notes', style: TextStyle(color: Colors.black)),
+        backgroundColor: const Color.fromARGB(221, 18, 74, 148),
+        title: const Text('Buat Notes', style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -91,6 +93,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
               FractionallySizedBox(
                 widthFactor: 0.7,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: name,
                   onChanged: (value) => _validateInputs(),
                   decoration: const InputDecoration(
@@ -103,6 +106,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
               FractionallySizedBox(
                 widthFactor: 0.7,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: description,
                   onChanged: (value) => _validateInputs(),
                   decoration: const InputDecoration(
@@ -126,7 +130,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                           )
                           : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

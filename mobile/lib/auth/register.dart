@@ -21,8 +21,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes App'),
+        backgroundColor: const Color.fromARGB(221, 18, 74, 148),
+        title: const Text('Notes App' , style: TextStyle(color: Colors.white)),
       ),
+      backgroundColor: const Color.fromARGB(255, 8, 21, 32),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +33,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               'Daftar Notes App',
               style: TextStyle(
                 fontSize: 30,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -39,6 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: username,
                 decoration: const InputDecoration(
                   labelText: 'Username',
@@ -50,6 +53,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: fullname,
                 decoration: const InputDecoration(
                   labelText: 'Nama Lengkap',
@@ -61,6 +65,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: password,
                 decoration: const InputDecoration(
                   labelText: 'Password',
@@ -73,6 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             FractionallySizedBox(
               widthFactor: 0.7,
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: cpassword,
                 decoration: const InputDecoration(
                   labelText: 'Konfirmasi Password',
@@ -86,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: ElevatedButton(
                 onPressed: isButtonDisabled || isLoading? null: registerUser,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.blueAccent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -122,7 +128,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   child: const Text(
                     'Sudah punya akun ?',
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
                 Padding(
@@ -138,7 +144,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     child: const Text(
                       'Masuk',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 15),
                     ),
                   ),
                 ),
@@ -200,17 +206,56 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Registration Error"),
-            content: const Text("An error occurred during registration."),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("OK"),
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            backgroundColor: Color(0xFF1E1E1E), // warna gelap
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    color: Colors.red,
+                    size: 60,
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    'Error',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Username already exist. Please try again.',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.greenAccent,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text('OK'),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       );
